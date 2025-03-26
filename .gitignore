@@ -1,0 +1,23 @@
+# Игнорирование папок, генерируемых Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+
+# Файлы, генерируемые Visual Studio или другими IDE
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Дополнительные временные файлы
+*.mdb
+*.opendb
+*.VC.db
