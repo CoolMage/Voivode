@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager: StartGame()");
 
         // 1. Ищем TacticalMapManager
-        TacticalMapManager mapManager = FindObjectOfType<TacticalMapManager>();
+        TacticalMapManager mapManager = FindAnyObjectByType<TacticalMapManager>();
         if (mapManager != null)
         {
             mapManager.SetupBattlefield();
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         }
 
         // 2. Ищем UnitManager
-        UnitManager unitManager = FindObjectOfType<UnitManager>();
+        UnitManager unitManager = FindAnyObjectByType<UnitManager>();
         if (unitManager != null)
         {
             // Пример: создадим 2 юнита на разных позициях
