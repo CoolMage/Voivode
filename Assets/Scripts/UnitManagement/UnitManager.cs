@@ -18,7 +18,7 @@ public class UnitManager : MonoBehaviour
     /// <summary>
     /// Создаёт новый юнит и добавляет его в список.
     /// </summary>
-    public Unit CreateUnit(string name, int health, int morale, string type, Vector3 spawnPosition)
+    public Unit CreateUnit(string name, int health, int morale, string type, Vector3 spawnPosition, Faction faction)
     {
         if (unitPrefab == null)
         {
@@ -30,8 +30,8 @@ public class UnitManager : MonoBehaviour
         GameObject newUnitObj = Instantiate(unitPrefab, spawnPosition, Quaternion.identity);
         Unit newUnit = newUnitObj.GetComponent<Unit>();
 
-        // Инициализируем юнит
-        newUnit.InitializeUnit(name, health, morale, type);
+        // Инициализируем юнит с учетом фракции
+        newUnit.InitializeUnit(name, health, morale, type, faction);
         newUnit.currentPosition = spawnPosition;
 
         // Добавляем в общий список
@@ -39,6 +39,7 @@ public class UnitManager : MonoBehaviour
 
         return newUnit;
     }
+
 
     /// <summary>
     /// Обновляет состояние всех юнитов, если нужно.

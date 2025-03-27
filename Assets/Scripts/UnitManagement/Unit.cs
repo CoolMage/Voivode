@@ -1,29 +1,60 @@
 using UnityEngine;
 
+public enum Faction
+{
+    Friendly,
+    Enemy
+}
+
 public class Unit : MonoBehaviour
 {
     [Header("Basic Unit Stats")]
+    [Header("Sprites by Faction")]
+    public Sprite friendlySprite;
+    public Sprite enemySprite;
     public string unitName = "New Unit";
     public int health = 100;
     public int morale = 50;
+
+    public Faction unitFaction = Faction.Friendly;
 
     // Если нужен тип (рат, стрельцы и т.п.)
     public string unitType = "Infantry";
 
     // Пример позиции. Для 2D можно использовать Vector2, если предпочитаете.
-    public Vector2 currentPosition;
+    public Vector3 currentPosition;
 
     /// <summary>
     /// Метод для инициализации юнита при создании.
     /// </summary>
-    public void InitializeUnit(string name, int health, int morale, string type)
+    public void InitializeUnit(string name, int health, int morale, string type, Faction faction)
     {
         unitName = name;
         this.health = health;
         this.morale = morale;
         unitType = type;
+        unitFaction = faction;
 
-        Debug.Log($"Unit {unitName} initialized. Health: {health}, Morale: {morale}, Type: {type}");
+        // Установка нужного спрайта в зависимости от фракции
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+        {
+            if (unitFaction == Faction.Friendly)
+            {
+                spriteRenderer.sprite = friendlySprite;
+            }
+            else if (unitFaction == Faction.Enemy)
+            {
+                spriteRenderer.sprite = enemySprite;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("SpriteRenderer не найден на объекте юнита!");
+        }
+
+        Debug.Log($"Unit {unitName} initialized. Faction: {unitFaction}, Sprite set accordingly.");
     }
 
 
@@ -35,12 +66,15 @@ public class Unit : MonoBehaviour
     // Вызывается, когда по объекту кликают мышью
     private void OnMouseDown()
     {
-        // Преобразуем позицию мыши из экранных координат в мировые.
+        // Если юнит не дружеский, выходим из метода.
+        if (unitFaction != Faction.Friendly)
+            return;
+
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // Вычисляем смещение: разница между позицией юнита и позицией клика.
         offset = transform.position - new Vector3(mouseWorldPos.x, mouseWorldPos.y, transform.position.z);
         isDragging = true;
     }
+
 
     // Вызывается каждый кадр, пока объект перетаскивается
     private void OnMouseDrag()

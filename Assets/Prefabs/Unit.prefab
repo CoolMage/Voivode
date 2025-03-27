@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -1385786070971223102, guid: 364fa6db9e7994074a12fbdf5859bacb, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3722385895130866058
@@ -101,11 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6efdd99069f4f47934016ab7a70921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendlySprite: {fileID: -4128630578238932089, guid: 3ff52e1050c0042199d1097672307740, type: 3}
+  enemySprite: {fileID: 2027076413, guid: 364fa6db9e7994074a12fbdf5859bacb, type: 3}
   unitName: New Unit
   health: 100
   morale: 50
+  unitFaction: 0
   unitType: Infantry
-  currentPosition: {x: 0, y: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &1282478193162699851
 BoxCollider2D:
   m_ObjectHideFlags: 0

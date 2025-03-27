@@ -58,8 +58,9 @@ public class GameManager : MonoBehaviour
         if (unitManager != null)
         {
             // Пример: создадим 2 юнита на разных позициях
-            unitManager.CreateUnit("Spearman", 100, 50, "Infantry", new Vector3(0, 0, 0));
-            unitManager.CreateUnit("Archer", 80, 40, "Ranged", new Vector3(2, 0, 0));
+            unitManager.CreateUnit("Spearman", 100, 50, "Infantry", new Vector3(0, 0, 0), Faction.Friendly);
+            unitManager.CreateUnit("Archer", 80, 40, "Ranged", new Vector3(2, 0, 0), Faction.Enemy);
+
         }
         else
         {
